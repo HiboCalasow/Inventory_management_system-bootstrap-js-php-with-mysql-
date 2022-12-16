@@ -8,14 +8,14 @@ include("db_connect.php");
         <div class="card">
             <div class="card-header p-1 bg-success text-white">item registration</div>
             <div class="card-body">
-                <form action="item.php">
-                    <label for="" class="form-label">Item Id</label>
+                <form action="items.php">
+                    <label class="form-label">Item Id</label>
                     <input type="text" name="itemId" class="form-control form-control-sm" readonly>
-                <form action="item.php">
-                    <label for="" class="form-label">Item Name</label>
+    
+                    <label  class="form-label">Item Name</label>
                     <input type="text" name="itemName" class="form-control form-control-sm">
                   
-                    <label for="" class="form-label">Category Name </label>
+                    <label  class="form-label">Category Name </label>
                     <select type="text" name="catId" class="form-control form-control-sm">
                          <option value="">Select Category Name From Dropdown</option>
                          <?php
@@ -40,7 +40,7 @@ include("db_connect.php");
                     
                     <input type="submit" value="Save Item" name="save_item" class="btn btn-primary btn-sm mt-2">
 
-                    <a href="ItemView.php" class="btn btn-danger btn-sm mt-2">View Item</a>
+                    <a href="itemsVeiw.php" class="btn btn-danger btn-sm mt-2">View Item</a>
                 </form>
                 <?php
                 if(isset($_POST['save_item'])){
@@ -48,13 +48,14 @@ include("db_connect.php");
                     $catId=$_POST['catId'];
                     $description=$_POST['description'];
                     $dateCreated=$_POST['dateCreated'];
+               
 
-                    $q=mysqli_query($conn,"INSERT INTO items VALUES(NULL,'$itemName','$catId','$description','$dateCreated')");
+                    $q=mysqli_query($conn,"INSERT INTO items VALUES(NULL,'$itemName','$description','$dateCreated','$catId')");
                     if($q){
                         echo "<div class='alert alert-success p-1 mt-5'>".$itemName." has been created successfully</div>";
                     }
                     else{
-                        echo "<div class='alert alert-success p-1 mt-5'> Insertio Operation</div>";
+                        echo "<div class='alert alert-warning p-1 mt-5'> Insertio Operation failed</div>";
                     };
 
                 }
