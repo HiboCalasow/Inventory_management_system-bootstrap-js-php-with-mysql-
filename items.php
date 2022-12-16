@@ -16,8 +16,20 @@ include("db_connect.php");
                     <input type="text" name="itemName" class="form-control form-control-sm">
                   
                     <label for="" class="form-label">Category Name </label>
-                    <select type="text" name="itemId" class="form-control form-control-sm">
-                         <option value="Select category Name">Select Category Name</option>
+                    <select type="text" name="catId" class="form-control form-control-sm">
+                         <option value="">Select Category Name From Dropdown</option>
+                         <?php
+                         $query=mysqli_query($conn,"SELECT * FROM category");
+                         while($data=mysqli_fetch_array($query)){
+
+                         
+                         ?>
+                         <option value="<?php echo $data['catId'];?>">
+                         <?php echo $data['catName'];?>
+                         <?php
+                         }
+                         ?>
+                         </option>
                 </select>
                     
                     <label for="" class="form-label">Description</label>
@@ -26,10 +38,27 @@ include("db_connect.php");
                     <label for="" class="form-label">Date Created</label>
                     <input type="date" name="dateCreated" class="form-control form-control-sm" >
                     
-                    <input type="submit" value="Save Item" class="btn btn-primary btn-sm mt-2">
+                    <input type="submit" value="Save Item" name="save_item" class="btn btn-primary btn-sm mt-2">
 
                     <a href="ItemView.php" class="btn btn-danger btn-sm mt-2">View Item</a>
                 </form>
+                <?php
+                if(isset($_POST['save_item'])){
+                    $itemName=$_POST['itemName'];
+                    $catId=$_POST['catId'];
+                    $description=$_POST['description'];
+                    $dateCreated=$_POST['dateCreated'];
+
+                    $q=mysqli_query($conn,"INSERT INTO items VALUES(NULL,'$itemName','$catId','$description','$dateCreated')");
+                    if($q){
+                        echo "<div class='alert alert-success p-1 mt-5'>".$itemName." has been created successfully</div>";
+                    }
+                    else{
+                        echo "<div class='alert alert-success p-1 mt-5'> Insertio Operation</div>";
+                    };
+
+                }
+                ?>
             </div>
         </div>
     </div>
