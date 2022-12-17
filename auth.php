@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if($_SESSION['status']!=1){
     ?>
@@ -8,4 +9,5 @@ if($_SESSION['status']!=1){
     </script>
     <?php
 }
+
 ?>

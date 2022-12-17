@@ -15,8 +15,7 @@ include "db_connect.php";
                 <input type="text" placeholder="Enter User Name" class="form-control" name="userName">
                 <label class="form-label mt-4"><b>Password</b></label>
                 <input type="text" placeholder="Enter Password" class="form-control" name="password">
-                <input type="submit" class="form-control bg-success fs-1 mt-3 text-center text-white p-2" value="Login" name="btn_login">
-              
+                <input type="submit" class="form-control bg-success fs-1 mt-3 text-center text-white p-2" value="Login" name="btn_login">             
                 <input type="checkbox" checked="checked" name="remember" class="mt-3" value="Remember me"> Remember me
              
                 <div class="container mt-2">
